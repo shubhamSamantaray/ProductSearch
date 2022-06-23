@@ -33,7 +33,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor='let product of products'>
+          <tr *ngFor='let product of filteredProduct'>
             <!-- Here product means each product in products array -->
             <td>
               <img *ngIf='showImage' [src]='product.imageUrl' [title]='product.productName'

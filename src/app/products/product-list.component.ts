@@ -29,7 +29,10 @@ export class ProductListComponent implements OnInit {
   set listFilter(value: string) {
     this._listFilter = value;
     console.log('in Setter', value);
+    this.filteredProduct = this.performFilter(value);
   }
+
+  filteredProduct: IProduct[] = [];
 
   products: IProduct[] = [{
     "productId": 5,
@@ -62,4 +65,17 @@ export class ProductListComponent implements OnInit {
   ngOnInit(): void {
     console.log('In OnInit')
   }
+
+
+  // products is referrring to the array, the input parameter is the listFilter which is passed on
+  //  as a parameter in the setter method for  which is a string
+  performFilter(filterBy: string): IProduct[] {
+    filterBy = filterBy.toUpperCase();
+    return this.products.filter((product: IProduct) => product.productName.toUpperCase().includes(filterBy))
+
+    // this.products will return the whole list of array, we are using js array method 
+
+    // The arrow method is processing each passed input product : products means product in each product , the body strats after => 
+  }
+
 }
