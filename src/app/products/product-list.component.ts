@@ -1,19 +1,37 @@
-import { Component } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
+import { IProduct } from "./product";
 
 
 @Component({
   selector: 'pm-product',
-  templateUrl: './product-list.component.html'
+  templateUrl: './product-list.component.html',
+  styleUrls: ['./product-list.component.css']
+  //Style urls are array type so we need square brackets 
 })
+//The styles added to comopnent is applicaple to only componnets
 
-//These are properties of the componnet
-export class ProductListComponent {
+//These are properties of the componet
+export class ProductListComponent implements OnInit {
   pageTitle: String = 'List Of Products';
   imageWidth: number = 25;
   imagemargin: number = 25;
   showImage: boolean = false;
-  listFilter: string = 'cart';
-  products: any[] = [{
+  // listFilter: string = 'Search Products';
+
+  //declaring the list filter as string private which starts with _
+  private _listFilter: string = ""
+
+  //getter and sette rmethod is used in order to use these private members
+  get listFilter(): string {
+    return this._listFilter;
+  }
+
+  set listFilter(value: string) {
+    this._listFilter = value;
+    console.log('in Setter', value);
+  }
+
+  products: IProduct[] = [{
     "productId": 5,
     "productName": "Hammer",
     "productCode": "TBX-0048",
@@ -38,5 +56,10 @@ export class ProductListComponent {
   // Methodname(): return type {Body} 
   toggleImage(): void {
     this.showImage = !this.showImage
+  }
+
+  //this method is declred to use onInIt
+  ngOnInit(): void {
+    console.log('In OnInit')
   }
 }

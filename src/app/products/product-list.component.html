@@ -41,10 +41,11 @@
               <!--Data binding -->
             </td>
             <!-- Here we are mapping the values to each product in sync with TD -->
-            <td>{{product.productName}}</td>
-            <td>{{product.productCode | uppercase}}</td>
+            <td>{{product.productName|uppercase}}</td>
+            <td>{{product.productCode | uppercase | ConvertToSpaces:'-'}}</td>
             <td>{{product.releaseDate}}</td>
-            <td>{{product.price | currency | lowercase}}</td>
+            <td>{{product.price | currency:'INR':'symbol':'1.2-2' }}</td>
+            <!--1.2-4 means 1 place to the right of the decimal, .2 means only two place left of the decimal  -2 define sthe maximum fraction  -->
             <td>{{product.starRating}}</td>
           </tr>
         </tbody>
