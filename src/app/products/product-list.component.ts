@@ -8,7 +8,7 @@ import { IProduct } from "./product";
   styleUrls: ['./product-list.component.css']
   //Style urls are array type so we need square brackets 
 })
-//The styles added to comopnent is applicaple to only componnets
+//The styles added to component is applicaple to only componnets
 
 //These are properties of the componet
 export class ProductListComponent implements OnInit {
@@ -70,8 +70,8 @@ export class ProductListComponent implements OnInit {
   // products is referrring to the array, the input parameter is the listFilter which is passed on
   //  as a parameter in the setter method for  which is a string
   performFilter(filterBy: string): IProduct[] {
-    filterBy = filterBy.toUpperCase();
-    return this.products.filter((product: IProduct) => product.productName.toUpperCase().includes(filterBy))
+    filterBy = filterBy.toLowerCase();
+    return this.products.filter((product: IProduct) => product.productName.toLowerCase().includes(filterBy))
 
     // this.products will return the whole list of array, we are using js array method 
 

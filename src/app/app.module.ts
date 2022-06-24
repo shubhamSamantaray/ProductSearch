@@ -5,13 +5,15 @@ import { FormsModule } from '@angular/forms'; //Itgot added because the app modu
 import { AppComponent } from './app.component';
 import { ProductListComponent } from './products/product-list.component';
 import { ConvertToSpacesPipe } from './shared/convert-to-spaces.pipe';
+import { StarComponent } from './shared/star.component';
 
 @NgModule({
   // local Directive or pipes are declred under declarations
   declarations: [
     AppComponent,
     ProductListComponent,
-    ConvertToSpacesPipe  // the component is declared here 
+    ConvertToSpacesPipe,
+    StarComponent  // the component is declared here 
   ],
   // the pipes used from 3rd party/angular is used under import
   imports: [
