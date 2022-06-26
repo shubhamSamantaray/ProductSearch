@@ -78,4 +78,8 @@ export class ProductListComponent implements OnInit {
     // The arrow method is processing each passed input product : products means product in each product , the body strats after => 
   }
 
+  onRatingClicked(message: string): void {
+    this.pageTitle = 'Product List: ' + message;
+  }
+
 }

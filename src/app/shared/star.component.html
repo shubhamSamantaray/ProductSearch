@@ -1,5 +1,7 @@
-<div class="crop" [style.width.px]="cropWidth" [title]="ratings">
+<div class="crop" [style.width.px]="cropWidth" [title]="ratings" (click)='onClick()'>
   <!-- property bindings -->
+  <!-- Click evnet binding -->
+
   <div style="width: 75px">
     <span class="fa fa-star"></span>
     <span class="fa fa-star"></span>

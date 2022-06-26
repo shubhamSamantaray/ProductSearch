@@ -47,7 +47,8 @@
             <td>{{ product.price | currency:'INR':'symbol':'1.2-2' }}</td>
             <!--1.2-4 means 1 place to the right of the decimal, .2 means only two place left of the decimal  -2 define sthe maximum fraction  -->
             <td>
-              <pm-star [ratings]='product.starRating'></pm-star>
+              <pm-star [ratings]='product.starRating' (ratingClicked)='onRatingClicked($event)'>
+              </pm-star>
               <!--binding nested componets input property using property binding using square brackets-->
             </td>
           </tr>
