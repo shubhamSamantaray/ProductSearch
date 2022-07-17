@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { IProduct } from "./product";
-
+import { productService } from "./products.services"
 
 @Component({
   selector: 'pm-product',
@@ -34,26 +34,9 @@ export class ProductListComponent implements OnInit {
 
   filteredProduct: IProduct[] = [];
 
-  products: IProduct[] = [{
-    "productId": 5,
-    "productName": "Hammer",
-    "productCode": "TBX-0048",
-    "releaseDate": "May 21, 2021",
-    "description": "Curved claw steel hammer",
-    "price": 8.9,
-    "starRating": 4.8,
-    "imageUrl": "assets/images/hammer.png"
-  }, {
-    "productId": 8,
-    "productName": "Saw",
-    "productCode": "TBX-0022",
-    "releaseDate": "May 15, 2021",
-    "description": "15-inch steel blade hand saw",
-    "price": 11.55,
-    "starRating": 3.7,
-    "imageUrl": "assets/images/saw.png"
-  }];
+  products: IProduct[] = [];
 
+  constructor(private productService: productService) { }
 
   // Methods are declared after properties
   // Methodname(): return type {Body} 
@@ -63,7 +46,8 @@ export class ProductListComponent implements OnInit {
 
   //this method is declred to use onInIt
   ngOnInit(): void {
-    console.log('In OnInit')
+    this.products = this.productService.getProducts();
+    this.filteredProduct = this.products;
   }
 
 
@@ -81,5 +65,6 @@ export class ProductListComponent implements OnInit {
   onRatingClicked(message: string): void {
     this.pageTitle = 'Product List: ' + message;
   }
+
 
 }
