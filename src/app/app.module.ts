@@ -26,7 +26,16 @@ import { RouterModule } from '@angular/router';
     BrowserModule,
     FormsModule,
     HttpClientModule,
-    RouterModule.forRoot([])
+    RouterModule.forRoot([
+      { path: 'products', component: ProductListComponent },
+      { path: 'products/id', component: ProductDetailComponent },
+      { path: 'welcome', component: WelcomeComponent },
+      { path: '', redirectTo: 'welcome', pathMatch: 'full' },
+      { path: '**', redirectTo: 'welcome', pathMatch: 'full' }
+      // the last one is a wild card one and the above one is default one
+      //  Which is usually mentoioned as 404 page 
+    ])
+    // The route values must be passed on.
     //We need to add imports here in order to use it for the ng module decorator 
   ],
   providers: [],

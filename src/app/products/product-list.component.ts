@@ -4,7 +4,7 @@ import { IProduct } from "./product";
 import { productService } from "./products.services"
 
 @Component({
-  selector: 'pm-product',
+  // selector: 'pm-product',
   templateUrl: './product-list.component.html',
   styleUrls: ['./product-list.component.css']
   //Style urls are array type so we need square brackets 
@@ -61,9 +61,19 @@ export class ProductListComponent implements OnInit, OnDestroy {
 
   }
 
+  // ngOnDestroy(): void {
+  //   this.sub.unsubscribe();
+  // }
+
   ngOnDestroy(): void {
-    this.sub.unsubscribe();
+    if (this.sub) {
+      this.sub.unsubscribe();
+    }
   }
+  // this to make sure the subscribe is active in order to unsub it
+
+
+
   // products is referrring to the array, the input parameter is the listFilter which is passed on
   //  as a parameter in the setter method for  which is a string
   performFilter(filterBy: string): IProduct[] {
