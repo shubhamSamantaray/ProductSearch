@@ -1,4 +1,5 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnDestroy, OnInit } from "@angular/core";
+import { Subscription } from "rxjs";
 import { IProduct } from "./product";
 import { productService } from "./products.services"
 
@@ -11,11 +12,13 @@ import { productService } from "./products.services"
 //The styles added to component is applicaple to only componnets
 
 //These are properties of the componet
-export class ProductListComponent implements OnInit {
+export class ProductListComponent implements OnInit, OnDestroy {
   pageTitle: String = 'List Of Products';
   imageWidth: number = 25;
   imagemargin: number = 25;
   showImage: boolean = false;
+  errorMsg: string = '';
+  sub!: Subscription;
   // listFilter: string = 'Search Products';
 
   //declaring the list filter as string private which starts with _
@@ -46,11 +49,21 @@ export class ProductListComponent implements OnInit {
 
   //this method is declred to use onInIt
   ngOnInit(): void {
-    this.products = this.productService.getProducts();
-    this.filteredProduct = this.products;
+    this.productService.getProducts().subscribe({
+      next: products => {
+        this.products = products;
+        this.filteredProduct = this.products;
+      },
+      error: err => this.errorMsg = err
+    });
+    // Here we are suibscribing the ovserbale and we need to unsub later as well, subscribe takes 
+    // observer object responsing to three notifications  
+
   }
 
-
+  ngOnDestroy(): void {
+    this.sub.unsubscribe();
+  }
   // products is referrring to the array, the input parameter is the listFilter which is passed on
   //  as a parameter in the setter method for  which is a string
   performFilter(filterBy: string): IProduct[] {
